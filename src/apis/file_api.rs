@@ -11,7 +11,7 @@
 use reqwest;
 
 use super::{configuration, Error};
-use crate::{apis::ResponseContent, models::ThumbnailType};
+use crate::apis::ResponseContent;
 
 /// struct for typed errors of method [`delete_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -352,7 +352,7 @@ pub async fn get_thumbnail_image(
 /// 指定したチャンネルにファイルをアップロードします。 アーカイブされているチャンネルにはアップロード出来ません。
 pub async fn post_file(
     configuration: &configuration::Configuration,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
     channel_id: &str,
 ) -> Result<crate::models::FileInfo, Error<PostFileError>> {
     let local_var_configuration = configuration;

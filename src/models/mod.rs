@@ -26,6 +26,8 @@ pub mod channel_event_detail;
 pub use self::channel_event_detail::ChannelEventDetail;
 pub mod channel_list;
 pub use self::channel_list::ChannelList;
+pub mod channel_path;
+pub use self::channel_path::ChannelPath;
 pub mod channel_stats;
 pub use self::channel_stats::ChannelStats;
 pub mod channel_stats_stamp;

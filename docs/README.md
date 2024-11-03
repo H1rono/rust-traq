@@ -57,6 +57,7 @@ Class | Method | HTTP request | Description
 *ChannelApi* | [**get_channel**](ChannelApi.md#get_channel) | **GET** /channels/{channelId} | チャンネル情報を取得
 *ChannelApi* | [**get_channel_bots**](ChannelApi.md#get_channel_bots) | **GET** /channels/{channelId}/bots | チャンネル参加中のBOTのリストを取得
 *ChannelApi* | [**get_channel_events**](ChannelApi.md#get_channel_events) | **GET** /channels/{channelId}/events | チャンネルイベントのリストを取得
+*ChannelApi* | [**get_channel_path**](ChannelApi.md#get_channel_path) | **GET** /channels/{channelId}/path | 指定したチャンネルパスを取得
 *ChannelApi* | [**get_channel_pins**](ChannelApi.md#get_channel_pins) | **GET** /channels/{channelId}/pins | チャンネルピンのリストを取得
 *ChannelApi* | [**get_channel_stats**](ChannelApi.md#get_channel_stats) | **GET** /channels/{channelId}/stats | チャンネル統計情報を取得
 *ChannelApi* | [**get_channel_subscribers**](ChannelApi.md#get_channel_subscribers) | **GET** /channels/{channelId}/subscribers | チャンネルの通知購読者のリストを取得
@@ -245,6 +246,7 @@ Class | Method | HTTP request | Description
  - [ChannelEvent](ChannelEvent.md)
  - [ChannelEventDetail](ChannelEventDetail.md)
  - [ChannelList](ChannelList.md)
+ - [ChannelPath](ChannelPath.md)
  - [ChannelStats](ChannelStats.md)
  - [ChannelStatsStamp](ChannelStatsStamp.md)
  - [ChannelStatsUser](ChannelStatsUser.md)
