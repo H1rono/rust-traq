@@ -133,6 +133,15 @@ pub enum RemoveUserGroupMemberError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`remove_user_group_members`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RemoveUserGroupMembersError {
+    Status403(),
+    Status404(),
+    UnknownValue(serde_json::Value),
+}
+
 /// 指定したグループに管理者を追加します。 対象のユーザーグループの管理者権限が必要です。
 pub async fn add_user_group_admin(
     configuration: &configuration::Configuration,
@@ -187,7 +196,7 @@ pub async fn add_user_group_admin(
 pub async fn add_user_group_member(
     configuration: &configuration::Configuration,
     group_id: &str,
-    user_group_member: Option<crate::models::UserGroupMember>,
+    add_user_group_member_request: Option<crate::models::AddUserGroupMemberRequest>,
 ) -> Result<(), Error<AddUserGroupMemberError>> {
     let local_var_configuration = configuration;
 
@@ -211,7 +220,7 @@ pub async fn add_user_group_member(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&user_group_member);
+    local_var_req_builder = local_var_req_builder.json(&add_user_group_member_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -237,7 +246,7 @@ pub async fn add_user_group_member(
 pub async fn change_user_group_icon(
     configuration: &configuration::Configuration,
     group_id: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<(), Error<ChangeUserGroupIconError>> {
     let local_var_configuration = configuration;
 
@@ -261,7 +270,7 @@ pub async fn change_user_group_icon(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    let local_var_form = reqwest::multipart::Form::new();
+    let mut local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'file' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -757,6 +766,54 @@ pub async fn remove_user_group_member(
         Ok(())
     } else {
         let local_var_entity: Option<RemoveUserGroupMemberError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// 指定したグループから全てのメンバーを削除します。 対象のユーザーグループの管理者権限が必要です。
+pub async fn remove_user_group_members(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+) -> Result<(), Error<RemoveUserGroupMembersError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/groups/{groupId}/members",
+        local_var_configuration.base_path,
+        groupId = crate::apis::urlencode(group_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        Ok(())
+    } else {
+        let local_var_entity: Option<RemoveUserGroupMembersError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

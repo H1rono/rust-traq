@@ -57,6 +57,7 @@ Class | Method | HTTP request | Description
 *ChannelApi* | [**get_channel**](ChannelApi.md#get_channel) | **GET** /channels/{channelId} | チャンネル情報を取得
 *ChannelApi* | [**get_channel_bots**](ChannelApi.md#get_channel_bots) | **GET** /channels/{channelId}/bots | チャンネル参加中のBOTのリストを取得
 *ChannelApi* | [**get_channel_events**](ChannelApi.md#get_channel_events) | **GET** /channels/{channelId}/events | チャンネルイベントのリストを取得
+*ChannelApi* | [**get_channel_path**](ChannelApi.md#get_channel_path) | **GET** /channels/{channelId}/path | 指定したチャンネルパスを取得
 *ChannelApi* | [**get_channel_pins**](ChannelApi.md#get_channel_pins) | **GET** /channels/{channelId}/pins | チャンネルピンのリストを取得
 *ChannelApi* | [**get_channel_stats**](ChannelApi.md#get_channel_stats) | **GET** /channels/{channelId}/stats | チャンネル統計情報を取得
 *ChannelApi* | [**get_channel_subscribers**](ChannelApi.md#get_channel_subscribers) | **GET** /channels/{channelId}/subscribers | チャンネルの通知購読者のリストを取得
@@ -95,6 +96,7 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**get_user_groups**](GroupApi.md#get_user_groups) | **GET** /groups | ユーザーグループのリストを取得
 *GroupApi* | [**remove_user_group_admin**](GroupApi.md#remove_user_group_admin) | **DELETE** /groups/{groupId}/admins/{userId} | グループ管理者を削除
 *GroupApi* | [**remove_user_group_member**](GroupApi.md#remove_user_group_member) | **DELETE** /groups/{groupId}/members/{userId} | グループメンバーを削除
+*GroupApi* | [**remove_user_group_members**](GroupApi.md#remove_user_group_members) | **DELETE** /groups/{groupId}/members | グループメンバーを一括削除
 *MeApi* | [**add_my_star**](MeApi.md#add_my_star) | **POST** /users/me/stars | チャンネルをスターに追加
 *MeApi* | [**add_my_user_tag**](MeApi.md#add_my_user_tag) | **POST** /users/me/tags | 自分にタグを追加
 *MeApi* | [**change_my_icon**](MeApi.md#change_my_icon) | **PUT** /users/me/icon | 自分のアイコン画像を変更
@@ -233,6 +235,7 @@ Class | Method | HTTP request | Description
 
  - [ActiveOAuth2Token](ActiveOAuth2Token.md)
  - [ActivityTimelineMessage](ActivityTimelineMessage.md)
+ - [AddUserGroupMemberRequest](AddUserGroupMemberRequest.md)
  - [Bot](Bot.md)
  - [BotDetail](BotDetail.md)
  - [BotEventLog](BotEventLog.md)
@@ -245,6 +248,7 @@ Class | Method | HTTP request | Description
  - [ChannelEvent](ChannelEvent.md)
  - [ChannelEventDetail](ChannelEventDetail.md)
  - [ChannelList](ChannelList.md)
+ - [ChannelPath](ChannelPath.md)
  - [ChannelStats](ChannelStats.md)
  - [ChannelStatsStamp](ChannelStatsStamp.md)
  - [ChannelStatsUser](ChannelStatsUser.md)

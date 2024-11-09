@@ -2,6 +2,7 @@ docs/README.md
 docs/ActiveOAuth2Token.md
 docs/ActivityApi.md
 docs/ActivityTimelineMessage.md
+docs/AddUserGroupMemberRequest.md
 docs/AuthenticationApi.md
 docs/Bot.md
 docs/BotApi.md
@@ -17,6 +18,7 @@ docs/ChannelApi.md
 docs/ChannelEvent.md
 docs/ChannelEventDetail.md
 docs/ChannelList.md
+docs/ChannelPath.md
 docs/ChannelStats.md
 docs/ChannelStatsStamp.md
 docs/ChannelStatsUser.md
@@ -168,6 +170,7 @@ src/apis/webrtc_api.rs
 src/lib.rs
 src/models/active_o_auth2_token.rs
 src/models/activity_timeline_message.rs
+src/models/add_user_group_member_request.rs
 src/models/bot.rs
 src/models/bot_detail.rs
 src/models/bot_event_log.rs
@@ -180,6 +183,7 @@ src/models/channel.rs
 src/models/channel_event.rs
 src/models/channel_event_detail.rs
 src/models/channel_list.rs
+src/models/channel_path.rs
 src/models/channel_stats.rs
 src/models/channel_stats_stamp.rs
 src/models/channel_stats_user.rs
