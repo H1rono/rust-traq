@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**get_user_groups**](GroupApi.md#get_user_groups) | **GET** /groups | ユーザーグループのリストを取得
 [**remove_user_group_admin**](GroupApi.md#remove_user_group_admin) | **DELETE** /groups/{groupId}/admins/{userId} | グループ管理者を削除
 [**remove_user_group_member**](GroupApi.md#remove_user_group_member) | **DELETE** /groups/{groupId}/members/{userId} | グループメンバーを削除
+[**remove_user_group_members**](GroupApi.md#remove_user_group_members) | **DELETE** /groups/{groupId}/members | グループメンバーを一括削除
 
 
 
@@ -53,7 +54,7 @@ Name | Type | Description  | Required | Notes
 
 ## add_user_group_member
 
-> add_user_group_member(group_id, user_group_member)
+> add_user_group_member(group_id, add_user_group_member_request)
 グループメンバーを追加
 
 指定したグループにメンバーを追加します。 対象のユーザーグループの管理者権限が必要です。
@@ -64,7 +65,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **uuid::Uuid** | ユーザーグループUUID | [required] |
-**user_group_member** | Option<[**UserGroupMember**](UserGroupMember.md)> |  |  |
+**add_user_group_member_request** | Option<[**AddUserGroupMemberRequest**](AddUserGroupMemberRequest.md)> |  |  |
 
 ### Return type
 
@@ -398,6 +399,36 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **uuid::Uuid** | ユーザーグループUUID | [required] |
 **user_id** | **uuid::Uuid** | ユーザーUUID | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## remove_user_group_members
+
+> remove_user_group_members(group_id)
+グループメンバーを一括削除
+
+指定したグループから全てのメンバーを削除します。 対象のユーザーグループの管理者権限が必要です。
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **uuid::Uuid** | ユーザーグループUUID | [required] |
 
 ### Return type
 

@@ -214,7 +214,7 @@ pub async fn add_message_stamp(
 pub async fn change_stamp_image(
     configuration: &configuration::Configuration,
     stamp_id: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<(), Error<ChangeStampImageError>> {
     let local_var_configuration = configuration;
 
@@ -238,7 +238,7 @@ pub async fn change_stamp_image(
     if let Some(ref local_var_token) = local_var_configuration.bearer_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    let local_var_form = reqwest::multipart::Form::new();
+    let mut local_var_form = reqwest::multipart::Form::new();
     // TODO: support file upload for 'file' parameter
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -266,7 +266,7 @@ pub async fn change_stamp_image(
 pub async fn create_stamp(
     configuration: &configuration::Configuration,
     name: &str,
-    _file: std::path::PathBuf,
+    file: std::path::PathBuf,
 ) -> Result<crate::models::Stamp, Error<CreateStampError>> {
     let local_var_configuration = configuration;
 
